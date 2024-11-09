@@ -10,8 +10,8 @@ module ULA_tb;
     ULA uut(a,b,opcode,s,clk);
 
     initial begin
-        $dumpfile("ula_tb.vcd");
-        $dumpvars(0,ula_tb);
+        $dumpfile("ULA_tb.vcd");
+        $dumpvars(0,ULA_tb);
 
         a = 8'b00000001;
         b = 8'b00000001;
