@@ -12,12 +12,12 @@ module ULA_tb;
     initial begin
         $dumpfile("ULA_tb.vcd");
         $dumpvars(0,ULA_tb);
-
+        
         a = 8'b00000001;
         b = 8'b00000001;
         opcode = 3'b000;
-
         $display("Teste completo");
+        $finish;
     end
 
     initial begin

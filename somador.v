@@ -1,4 +1,4 @@
-module somador_completo(a, b,cin, s, cout);
+module somador(a, b,cin, s, cout);
     input a, b,cin;
     output reg s,cout;
 

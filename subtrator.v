@@ -1,4 +1,4 @@
-module subtrator_completo(a, b,cin, s, cout);
+module subtrator(a, b,cin, s, cout);
     input a, b,cin;
     output reg s,cout;
 

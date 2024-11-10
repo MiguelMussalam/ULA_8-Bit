@@ -1,6 +1,6 @@
 module XOR(a,b,s);
     input [7:0] a,b;
-    output reg [8:0] s;
+    output [7:0] s;
 
-    s = a ^ b;
+    assign s = a ^ b;
 endmodule
