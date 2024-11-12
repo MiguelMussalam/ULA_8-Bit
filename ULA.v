@@ -16,7 +16,7 @@ module ULA(a_in,b_in,opcode_in,s,flag,clk);
 
     wire [7:0] a_out, b_out, opcode_out;
     wire [8:0] s_in, s_soma, s_sub;
- 	wire [7:0] s_out,s_and,s_or,s_xor;
+  	wire [7:0] s_out,s_and,s_or,s_xor;
   
   	output reg flag;
     output [7:0] s;
