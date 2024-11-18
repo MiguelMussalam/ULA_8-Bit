@@ -7,7 +7,8 @@
 `include "AND.v"
 `include "OR.v"
 `include "XOR.v"
-
+`include "XNOR.v"
+`include "comparador.v"
 
 module ULA(a_in,b_in,opcode_in,s,flag,clk);
     input clk;
@@ -16,7 +17,7 @@ module ULA(a_in,b_in,opcode_in,s,flag,clk);
 
     wire [7:0] a_out, b_out, opcode_out;
     wire [8:0] s_in, s_soma, s_sub;
-  	wire [7:0] s_out,s_and,s_or,s_xor;
+  	wire [7:0] s_out,s_and,s_or,s_xor,s_nand,s_xnor,s_com;
   
   	output reg flag;
     output [7:0] s;
@@ -32,19 +33,28 @@ module ULA(a_in,b_in,opcode_in,s,flag,clk);
 
   	subtrator_completo sub_1(a_out,b_out,s_sub);
   	tristate sub_2(s_sub[7:0],s_out,opcode_out[1]);
-        
     //-----------------------------------------
 
     //Operações <= 8 Bits
     //----------------------------------------------------------
-    AND and_1(a_out,b_out,s_in[7:0]);
- 	tristate and_2(s_and[7:0],s_out,opcode_out[2]);
+    AND and_1(a_out,b_out,s_and[7:0]);
+ 	  tristate and_2(s_and[7:0],s_out,opcode_out[2]);
 
-    OR or_1(a_out,b_out,s_in[7:0]);
+    OR or_1(a_out,b_out,s_or[7:0]);
   	tristate or_2(s_or[7:0],s_out,opcode_out[3]);
 
-    XOR xor_1(a_out, b_out, s_in[7:0]);
+    XOR xor_1(a_out, b_out, s_xor[7:0]);
   	tristate xor_2(s_xor[7:0], s_out, opcode_out[4]);
+
+    //NAND - neganado s_out
+    AND nan_1(a_out, b_out, s_nand[7:0]);
+    tristate nan_2(~s_nand,s_out,opcode_out[5]);
+
+    XNOR xno_1(a_out, b_out, s_xnor[7:0]);
+    tristate xno_2(s_xnor, s_out,opcode_out[6]);
+
+    comparador com_1(a_out, b_out, s_com[7:0]);
+    tristate com_2(s_com, s_out,opcode_out[7]);
     //--------------------------------------------------------
 	
     reg_8_bit s1(s_out[7:0],s,clk);
